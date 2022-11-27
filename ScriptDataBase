@@ -1,0 +1,24 @@
+create database alunoti91db;
+use alunoti91db;
+
+create table tbalunos(
+id_aluno int primary key not null auto_increment,
+nome_aluno varchar(32) not null,
+email_aluno varchar(32) not null unique,
+cpf_aluno varchar(11) not null unique,
+data_nasc_aluno datetime not null,
+id_curso_aluno int not null
+);
+
+create table tbcursos(
+id_curso int primary key not null auto_increment,
+nome_curso varchar(60) not null,
+carga_horaria_curso decimal(10,2) not null
+);
+
+insert into tbcursos(id_curso, nome_curso, carga_horaria_curso)
+values(1,'C#',50), (2,'PHP', 40), (3,'JAVASCRIPT', 40.50), (4,'C++',63.5);
+
+-- restrição (constraint) da tabela tbalunos para tabela tbcursos
+alter table tbalunos add constraint fk_curso_aluno foreign key (id_curso_aluno)
+references tbcursos (id_curso) on delete no action on update no action;
