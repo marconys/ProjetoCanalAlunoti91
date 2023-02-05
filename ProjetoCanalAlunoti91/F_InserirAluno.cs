@@ -33,7 +33,7 @@ namespace ProjetoCanalAlunoti91
             {
                 idCurso = 2;
             }
-            else if (Cb_Cursos.Text == "'JAVASCRIPT'")
+            else if (Cb_Cursos.Text == "JAVASCRIPT")
             {
                 idCurso = 3;
             }
@@ -62,6 +62,11 @@ namespace ProjetoCanalAlunoti91
                 tb_Email.Clear();
                 Msk_Cpf.Clear();
                 Cb_Cursos.Text = "ESCOLHER";
+
+                using (var flistarAluno = new F_ListaAlunos())
+                {
+                    flistarAluno.ShowDialog();
+                }
             }
             catch (Exception erro)
             {

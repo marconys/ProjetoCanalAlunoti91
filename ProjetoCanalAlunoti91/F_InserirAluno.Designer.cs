@@ -82,9 +82,8 @@
             this.Cb_Cursos.BackColor = System.Drawing.Color.LightBlue;
             this.Cb_Cursos.FormattingEnabled = true;
             this.Cb_Cursos.Items.AddRange(new object[] {
-            "PHP",
             "C#",
-            "JAVA",
+            "PHP",
             "JAVASCRIPT",
             "C++"});
             this.Cb_Cursos.Location = new System.Drawing.Point(65, 207);

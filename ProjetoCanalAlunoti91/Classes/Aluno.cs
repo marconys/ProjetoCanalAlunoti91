@@ -83,6 +83,34 @@ namespace ProjetoCanalAlunoti91.Classes
 
                 MessageBox.Show(erro.Message);
             }
-        }        
+        } 
+
+        //Função read // listar todos os alunos
+        public static DataTable listarAlunos()
+        {
+            var dt = new DataTable();
+
+            var sql = "SELECT id_aluno AS 'ID ALUNO', nome_aluno AS 'NOME ALUNO', email_aluno AS 'E-MAIL ALUNO', cpf_aluno AS 'CPF ALUNO', data_nasc_aluno AS 'ANIVERSARIO', id_curso_aluno AS 'ID CURSO' FROM alunoti91db.tbalunos";
+
+            try
+            {
+                using (var cn = new MySqlConnection(DataBase.strConn))
+                {
+                    cn.Open();
+
+                    using (var da = new MySqlDataAdapter(sql, cn))
+                    {
+                        da.Fill(dt);
+                    }
+                }
+            }
+            catch (Exception erro)
+            {
+
+                MessageBox.Show(erro.Message);
+            }
+
+            return dt;
+        }
     }
 }
