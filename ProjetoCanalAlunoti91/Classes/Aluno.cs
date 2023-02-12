@@ -112,5 +112,46 @@ namespace ProjetoCanalAlunoti91.Classes
 
             return dt;
         }
+
+        //Função para listar listar aluno por ID
+        public Aluno listarAlunoPorId(int id)
+        {
+            var aluno = new Aluno();
+            var sql = "SELECT * FROM tbalunos WHERE id_aluno=" + id;
+
+            try
+            {
+                using (var cn = new MySqlConnection(DataBase.strConn))
+                {
+                    cn.Open();
+
+                    using (var cmd = new MySqlCommand(sql, cn))
+                    {
+                        using (var dr = cmd.ExecuteReader())
+                        {
+                            //Verifica se na busca retornou alguma linha
+                            if (dr.HasRows)
+                            {
+                                if (dr.Read())
+                                {
+                                    this.Name = dr["nome_aluno"].ToString();
+                                    this.Email = dr["email_aluno"].ToString();
+                                    this.Cpf = dr["cpf_aluno"].ToString();
+                                    this.DataNasc = Convert.ToDateTime(dr["data_nasc_aluno"].ToString());
+                                    this.IdCurso = Convert.ToInt32(dr["id_curso_aluno"].ToString());
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            catch (Exception erro)
+            {
+
+                MessageBox.Show(erro.Message);
+            }
+
+            return aluno;
+        }
     }
 }
