@@ -32,14 +32,14 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.dgvAluno = new System.Windows.Forms.DataGridView();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.label1 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
-            this.tbNome = new System.Windows.Forms.TextBox();
-            this.tbEmail = new System.Windows.Forms.TextBox();
-            this.mkCpf = new System.Windows.Forms.MaskedTextBox();
             this.mkDateBirth = new System.Windows.Forms.MaskedTextBox();
+            this.mkCpf = new System.Windows.Forms.MaskedTextBox();
+            this.tbEmail = new System.Windows.Forms.TextBox();
+            this.tbNome = new System.Windows.Forms.TextBox();
+            this.label4 = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
             this.btnAtualizar = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dgvAluno)).BeginInit();
             this.groupBox1.SuspendLayout();
@@ -75,6 +75,7 @@
             this.dgvAluno.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvAluno.Size = new System.Drawing.Size(451, 239);
             this.dgvAluno.TabIndex = 0;
+            this.dgvAluno.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvAluno_CellContentClick);
             // 
             // groupBox1
             // 
@@ -95,57 +96,14 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Aluno";
             // 
-            // label1
+            // mkDateBirth
             // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(6, 31);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(55, 16);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "NOME:";
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(6, 64);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(60, 16);
-            this.label2.TabIndex = 1;
-            this.label2.Text = "E-MAIL:";
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(21, 93);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(40, 16);
-            this.label3.TabIndex = 2;
-            this.label3.Text = "CPF:";
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(6, 125);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(113, 16);
-            this.label4.TabIndex = 3;
-            this.label4.Text = "ANIVERSÁRIO:";
-            // 
-            // tbNome
-            // 
-            this.tbNome.BackColor = System.Drawing.SystemColors.ActiveCaption;
-            this.tbNome.Location = new System.Drawing.Point(67, 28);
-            this.tbNome.Name = "tbNome";
-            this.tbNome.Size = new System.Drawing.Size(246, 22);
-            this.tbNome.TabIndex = 4;
-            // 
-            // tbEmail
-            // 
-            this.tbEmail.BackColor = System.Drawing.SystemColors.ActiveCaption;
-            this.tbEmail.Location = new System.Drawing.Point(67, 58);
-            this.tbEmail.Name = "tbEmail";
-            this.tbEmail.Size = new System.Drawing.Size(246, 22);
-            this.tbEmail.TabIndex = 5;
+            this.mkDateBirth.BackColor = System.Drawing.SystemColors.ActiveCaption;
+            this.mkDateBirth.Location = new System.Drawing.Point(125, 122);
+            this.mkDateBirth.Mask = "00/00/0000";
+            this.mkDateBirth.Name = "mkDateBirth";
+            this.mkDateBirth.Size = new System.Drawing.Size(85, 22);
+            this.mkDateBirth.TabIndex = 7;
             // 
             // mkCpf
             // 
@@ -156,14 +114,57 @@
             this.mkCpf.Size = new System.Drawing.Size(114, 22);
             this.mkCpf.TabIndex = 6;
             // 
-            // mkDateBirth
+            // tbEmail
             // 
-            this.mkDateBirth.BackColor = System.Drawing.SystemColors.ActiveCaption;
-            this.mkDateBirth.Location = new System.Drawing.Point(125, 122);
-            this.mkDateBirth.Mask = "00/00/0000";
-            this.mkDateBirth.Name = "mkDateBirth";
-            this.mkDateBirth.Size = new System.Drawing.Size(85, 22);
-            this.mkDateBirth.TabIndex = 7;
+            this.tbEmail.BackColor = System.Drawing.SystemColors.ActiveCaption;
+            this.tbEmail.Location = new System.Drawing.Point(67, 58);
+            this.tbEmail.Name = "tbEmail";
+            this.tbEmail.Size = new System.Drawing.Size(246, 22);
+            this.tbEmail.TabIndex = 5;
+            // 
+            // tbNome
+            // 
+            this.tbNome.BackColor = System.Drawing.SystemColors.ActiveCaption;
+            this.tbNome.Location = new System.Drawing.Point(67, 28);
+            this.tbNome.Name = "tbNome";
+            this.tbNome.Size = new System.Drawing.Size(246, 22);
+            this.tbNome.TabIndex = 4;
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(6, 125);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(113, 16);
+            this.label4.TabIndex = 3;
+            this.label4.Text = "ANIVERSÁRIO:";
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(21, 93);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(40, 16);
+            this.label3.TabIndex = 2;
+            this.label3.Text = "CPF:";
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(6, 64);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(60, 16);
+            this.label2.TabIndex = 1;
+            this.label2.Text = "E-MAIL:";
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(6, 31);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(55, 16);
+            this.label1.TabIndex = 0;
+            this.label1.Text = "NOME:";
             // 
             // btnAtualizar
             // 

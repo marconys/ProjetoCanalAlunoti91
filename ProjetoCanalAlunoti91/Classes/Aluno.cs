@@ -114,7 +114,7 @@ namespace ProjetoCanalAlunoti91.Classes
         }
 
         //Função para listar listar aluno por ID
-        public Aluno listarAlunoPorId(int id)
+        public Aluno buscarAlunoPorId(int id)
         {
             var aluno = new Aluno();
             var sql = "SELECT * FROM tbalunos WHERE id_aluno=" + id;

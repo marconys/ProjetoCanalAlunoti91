@@ -21,5 +21,21 @@ namespace ProjetoCanalAlunoti91
             dt = Aluno.listarAlunos();
             dgvAluno.DataSource = dt;
         }
+
+        private void dgvAluno_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            Aluno aluno = new Aluno();
+
+            //verifica se o datagridView possui informações
+            if (dgvAluno.Rows.Count > 0)
+            {
+                var id = Convert.ToInt32(dgvAluno.Rows[dgvAluno.CurrentCell.RowIndex].Cells["ID ALUNO"].Value);
+                aluno.buscarAlunoPorId(id);
+                tbNome.Text = aluno.Name;
+                tbEmail.Text = aluno.Email;
+                mkCpf.Text = aluno.Cpf;
+                mkDateBirth.Text = aluno.DataNasc.ToString("dd/MM/yyyy");
+            }
+        }
     }
 }
