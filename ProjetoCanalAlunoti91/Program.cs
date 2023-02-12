@@ -16,7 +16,7 @@ namespace ProjetoCanalAlunoti91
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new F_Alunos());
+            Application.Run(new F_ListaAlunos());
         }
     }
 }
