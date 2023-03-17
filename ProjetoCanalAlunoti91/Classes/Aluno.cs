@@ -42,6 +42,14 @@ namespace ProjetoCanalAlunoti91.Classes
             IdCurso = idCurso;
         }
 
+        public Aluno(string name, string email, string cpf, DateTime dataNasc)
+        {
+            Name = name;
+            Email = email;
+            Cpf = cpf;
+            DataNasc = dataNasc;
+        }
+
         public Aluno(int id, string name, string email, string cpf, DateTime dataNasc, int idCurso)
         {
             Id = id;
@@ -152,6 +160,35 @@ namespace ProjetoCanalAlunoti91.Classes
             }
 
             return aluno;
+        }
+
+        //Função para atualizar aluno
+        public void atualizaAlunoPorId(int id)
+        {
+            var sql = "UPDATE tbalunos SET nome_aluno=@nomeAluno, email_aluno=@emailAluno, cpf_aluno=@cpfAluno, " +
+                "data_nasc_aluno=@dataNascimento WHERE id_aluno=" + id;
+
+            try
+            {
+                using (var cn = new MySqlConnection(DataBase.strConn))
+                {
+                    cn.Open();
+                    using (var cmd = new MySqlCommand(sql, cn))
+                    {
+                        //adiciona/Atualiza os parâmetros de values da query no MySql
+                        cmd.Parameters.AddWithValue("@nomeAluno", this.Name);
+                        cmd.Parameters.AddWithValue("@emailAluno", this.Email);
+                        cmd.Parameters.AddWithValue("@cpfAluno", this.Cpf);
+                        cmd.Parameters.AddWithValue("@dataNascimento", this.DataNasc);
+                        cmd.ExecuteNonQuery();
+
+                    }
+                }
+            }
+            catch (Exception erro)
+            {
+                MessageBox.Show(erro.Message);
+            }
         }
     }
 }
