@@ -33,6 +33,11 @@ namespace ProjetoCanalAlunoti91.Classes
 
         }
 
+        public Aluno(int id)
+        {
+            Id = id;
+        }
+
         public Aluno(string name, string email, string cpf, DateTime dataNasc, int idCurso)
         {
             Name = name;
@@ -189,6 +194,31 @@ namespace ProjetoCanalAlunoti91.Classes
             {
                 MessageBox.Show(erro.Message);
             }
+        }
+
+        //Função para excluir aluno
+        public void excluirAluno()
+        {
+            var sql = "DELETE FROM tbalunos WHERE id_aluno=" + this.Id;
+
+            try
+            {
+                using (var cn = new MySqlConnection(DataBase.strConn))
+                {
+                    cn.Open();
+
+                    using (var cmd = new MySqlCommand(sql, cn))
+                    {
+                        cmd.ExecuteNonQuery();
+                    }
+                }
+            }
+            catch (Exception erro)
+            {
+
+                MessageBox.Show(erro.Message);
+            }
+
         }
     }
 }

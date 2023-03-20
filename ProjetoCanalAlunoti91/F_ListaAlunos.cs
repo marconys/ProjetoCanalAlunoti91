@@ -29,8 +29,7 @@ namespace ProjetoCanalAlunoti91
             //verifica se o datagridView possui informações
             if (dgvAluno.Rows.Count > 0)
             {
-                var id = Convert.ToInt32(dgvAluno.Rows[dgvAluno.CurrentCell.RowIndex].Cells["ID ALUNO"].Value);
-                aluno.buscarAlunoPorId(id);
+                aluno.buscarAlunoPorId(captureId());
                 tbNome.Text = aluno.Name;
                 tbEmail.Text = aluno.Email;
                 mkCpf.Text = aluno.Cpf;
@@ -41,15 +40,14 @@ namespace ProjetoCanalAlunoti91
         private void btnAtualizar_Click(object sender, EventArgs e)
         {
             try
-            {
-                var id = Convert.ToInt32(dgvAluno.Rows[dgvAluno.CurrentCell.RowIndex].Cells["ID ALUNO"].Value);
+            {                
                 Aluno aluno = new Aluno(
                 tbNome.Text,
                 tbEmail.Text,
                 mkCpf.Text,
                 DateTime.Parse(mkDateBirth.Text));
 
-                aluno.atualizaAlunoPorId(id);
+                aluno.atualizaAlunoPorId(captureId());
                 MessageBox.Show("Aluno Atualizado com sucesso!");
 
                 showData();
@@ -62,6 +60,24 @@ namespace ProjetoCanalAlunoti91
             }
         }
 
+        private void btnExcluir_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                Aluno aluno = new Aluno(captureId());
+                aluno.excluirAluno();
+
+                MessageBox.Show("Aluno excluido com sucesso!");
+
+                showData();
+            }
+            catch (Exception erro)
+            {
+
+                MessageBox.Show("Erro ao tentar excluir aluno, tente novamente! \n" + erro.Message);
+            }
+        }
+
         public DataTable showData()
         {
             DataTable dt = new DataTable();
@@ -69,6 +85,13 @@ namespace ProjetoCanalAlunoti91
             dgvAluno.DataSource = dt;
 
             return dt;
+        }
+
+        public int captureId()
+        {
+            var id = Convert.ToInt32(dgvAluno.Rows[dgvAluno.CurrentCell.RowIndex].Cells["ID ALUNO"].Value);
+            
+            return id;
         }
     }
 }
